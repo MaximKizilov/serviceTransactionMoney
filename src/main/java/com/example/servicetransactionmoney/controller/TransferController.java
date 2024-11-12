@@ -4,6 +4,7 @@ package com.example.servicetransactionmoney.controller;
 import com.example.servicetransactionmoney.model.Status;
 import com.example.servicetransactionmoney.model.Transaction;
 import com.example.servicetransactionmoney.model.OperationId;
+import com.example.servicetransactionmoney.model.TransferResponseDTO;
 import com.example.servicetransactionmoney.service.TransferMoneyService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,14 +24,26 @@ public class TransferController implements WebMvcConfigurer {
 
 
     @PostMapping("/transfer")
-    public ResponseEntity<Status> transfer(@Valid @RequestBody Transaction transaction)  {
-        Status response = transferMoneyService.transfer(transaction);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    public ResponseEntity<TransferResponseDTO> transfer(@Valid @RequestBody Transaction transaction) {
+        try {
+            return new ResponseEntity<>(transferMoneyService.transfer(transaction), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @PostMapping("/confirmOperation")
     public ResponseEntity<String> confirmOperation(OperationId operationId) {
-        ResponseEntity<String> tResponseEntity = new ResponseEntity<>(transferMoneyService.confirmOperation(operationId), HttpStatus.OK);
-        return tResponseEntity;
+        try {
+            return new ResponseEntity<>(transferMoneyService.confirmOperation(operationId), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
 }

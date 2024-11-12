@@ -2,7 +2,7 @@ package com.example.servicetransactionmoney.model;
 
 public class Status {
     private String operationId;
-    private String verificationCode;
+    private String verificationCode = "0000";
 
 
     public String getOperationId() {
