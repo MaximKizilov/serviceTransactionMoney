@@ -46,6 +46,14 @@ public class TransactionLogger {
         log(logbuilder.toString());
     }
 
+    public static void logUnknown(LogType logType) {
+        StringBuilder logBuilder = new StringBuilder();
+        if (logType.equals(LogType.UNKNOWN)) {
+            logBuilder.append(CARD_UNKNOWN).append(" ").append(STAT_FAILED);
+        }
+        log(logBuilder.toString());
+    }
+
     public static void log(String msg) {
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(LOG_DATE_PATTERN);

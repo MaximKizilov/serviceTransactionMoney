@@ -15,7 +15,7 @@ private final List<Transaction> processingTransactions = new CopyOnWriteArrayLis
     }
 
     public Optional<Transaction> get(String id) {
-       return processingTransactions.stream().filter(transaction -> transaction.getId().equals(id)).findFirst();
+       return processingTransactions.stream().filter(transaction -> transaction.getOperationId().equals(id)).findFirst();
     }
 
     public void delete(Transaction transaction) {

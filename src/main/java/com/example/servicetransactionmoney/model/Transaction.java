@@ -27,7 +27,12 @@ public class Transaction {
 
     @Valid
     private Amount amount;
-    private String id;
+    @Valid
+    private OperationId operationId;
+
+    public Transaction() {
+        this.operationId = new OperationId();
+    }
 
     public @NotBlank @Size(min = 3, max = 3) @Pattern(regexp = "^\\d{3}$", message = "Incorrect date") String getCardFromCVV() {
         return cardFromCVV;
@@ -69,12 +74,12 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getId() {
-        return id;
+    public OperationId getOperationId() {
+        return operationId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOperationId(OperationId id) {
+        this.operationId = id;
     }
 
     @Override
@@ -85,7 +90,7 @@ public class Transaction {
                 ", cardFromValidTill='" + cardFromValidTill + '\'' +
                 ", cardToNumber='" + cardToNumber + '\'' +
                 ", amount=" + amount +
-                ", operationID='" + id + '\'' +
+                ", operationID='" + operationId + '\'' +
                 '}';
     }
 }

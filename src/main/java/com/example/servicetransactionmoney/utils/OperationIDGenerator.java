@@ -15,7 +15,7 @@ public class OperationIDGenerator {
         Random random = new Random();
         do{
             operationID = String.valueOf(1000+random.nextInt(9000));
-        }while(!usedOperID.contains(operationID));
+        }while(usedOperID.contains(operationID));
         usedOperID.add(operationID);
         return operationID;
     }

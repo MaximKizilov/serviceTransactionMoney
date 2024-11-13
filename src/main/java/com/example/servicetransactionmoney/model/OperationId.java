@@ -1,29 +1,28 @@
 package com.example.servicetransactionmoney.model;
 
+import jakarta.validation.constraints.Size;
+
 public class OperationId {
-    private String operationId;
-    private String code;
+    @Size(max = 4, min = 4)
+    private String id;
+    private String code = "0000";
 
     @Override
     public String toString() {
         return "OperationId{" +
-                "operationId='" + operationId + '\'' +
+                "id='" + id + '\'' +
                 ", code='" + code + '\'' +
                 '}';
     }
 
-    public String getOperationId() {
-        return operationId;
+    public String getId() {
+        return id;
     }
 
-    public void setOperationId(String operationId) {
-        this.operationId = operationId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public OperationId(String operationId, String code) {
-        this.operationId = operationId;
-        this.code = code;
-    }
 
     public OperationId() {
 

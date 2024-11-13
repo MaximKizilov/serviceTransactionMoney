@@ -11,7 +11,7 @@ public class CompletedTransactionRepo {
 
     private final List<Transaction> completedTransactions = new CopyOnWriteArrayList<>();
 
-void add(Transaction transaction) {
+public void add(Transaction transaction) {
     completedTransactions.add(transaction);
 }
 }
