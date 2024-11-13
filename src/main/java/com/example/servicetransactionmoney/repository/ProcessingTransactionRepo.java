@@ -11,11 +11,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ProcessingTransactionRepo {
 private final List<Transaction> processingTransactions = new CopyOnWriteArrayList<>();
     public void add(Transaction transaction) {
-
+processingTransactions.add(transaction);
     }
 
     public Optional<Transaction> get(String id) {
-       return processingTransactions.stream().filter(transaction -> transaction.getOperationId().equals(id)).findFirst();
+       return processingTransactions.stream().filter(transaction -> transaction.getOperationId().getId().equals(id)).findFirst();
     }
 
     public void delete(Transaction transaction) {
